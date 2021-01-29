@@ -1,3 +1,14 @@
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: azure;
+}
+.container {
+    background-color: aqua;
+    width: 300px;
+    height: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -150px;
 }
