@@ -18,6 +18,18 @@ function addClasses() {
     }
 }
 
+function findEmptyAndPlay() {
+    for (key in gameObj) {
+        if (gameObj[key] == 'empty') {
+            gameObj[key] = 'O';
+            boxes[key - 1].textContent = 'O';
+            return;
+        } else {
+            continue;
+        }
+    }
+}
+
 function onBoxClick(e) {
     let index = parseInt(e.target.classList[1]);
     if (gameObj[index] !== 'empty') {
@@ -26,6 +38,7 @@ function onBoxClick(e) {
     }
     gameObj[index] = 'X';
     e.target.textContent = 'X';
+    findEmptyAndPlay();
 }
 
 function game() {
