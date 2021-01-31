@@ -18,8 +18,14 @@ function addClasses() {
     }
 }
 
-function parseIndex(classList) {
-    console.log(classList[1]);
+function onBoxClick(e) {
+    let index = parseInt(e.target.classList[1]);
+    if (gameObj[index] !== 'empty') {
+        console.log('Sorry, that box is occupied');
+        return;
+    }
+    gameObj[index] = 'X';
+    e.target.textContent = 'X';
 }
 
 function game() {
@@ -29,9 +35,7 @@ function game() {
 }
 
 boxes.forEach(box => {
-    box.addEventListener('click', function(e) {
-        parseIndex(e.target.classList);
-    });
+    box.addEventListener('click', onBoxClick);
 });
 
 window.addEventListener('load', game);
