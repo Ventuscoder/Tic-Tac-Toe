@@ -1,4 +1,16 @@
 const boxes = document.querySelectorAll('.box');
+let gameObj = {
+    1: 'empty',
+    2: 'empty',
+    3: 'empty',
+    4: 'empty',
+    5: 'empty',
+    6: 'empty',
+    7: 'empty',
+    8: 'empty',
+    9: 'empty'
+};
+let winner;
 
 function addClasses() {
     for (let i = 1; i <= 9; i++) {
