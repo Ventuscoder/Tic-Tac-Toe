@@ -18,6 +18,14 @@ function addClasses() {
     }
 }
 
+function identify(str) {
+    if (str == 'O') {
+        return 'You';
+    } else {
+        return 'The computer';
+    }
+}
+
 function findEmptyAndPlay() {
     for (key in gameObj) {
         if (gameObj[key] == 'empty') {
@@ -27,6 +35,25 @@ function findEmptyAndPlay() {
         } else {
             continue;
         }
+    }
+}
+
+function checkWin() {
+    let rowWin = checkRow;
+    let colWin = checkCol;
+    let diagWin = checkDiag;
+    if (!rowWin) {
+        if (!colWin) {
+            if (!diagWin) {
+                return false;
+            } else {
+                console.log(`${identify(diagWin[0])} has won by the combination ${diagWin[1]}`);
+            }
+        } else {
+            console.log(`${identify(colWin[0])} has won by the combination ${colWin[1]}`);
+        }
+    } else {
+        console.log(`${identify(rowWin[0])} has won by the combination ${rowWin[1]}`);
     }
 }
 
@@ -41,6 +68,7 @@ function checkRow() {
             continue;
         }
     }
+    return false;
 }
 
 function checkCol() {
@@ -54,6 +82,7 @@ function checkCol() {
             continue;
         }
     }
+    return false;
 }
 
 function checkDiag() {
@@ -67,6 +96,7 @@ function checkDiag() {
             continue;
         }
     }
+    return false;
 }
 
 function onBoxClick(e) {
