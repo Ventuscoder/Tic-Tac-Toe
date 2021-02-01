@@ -56,6 +56,19 @@ function checkCol() {
     }
 }
 
+function checkDiag() {
+    let possibleDiagWins = [[1, 5, 9], [3, 5, 7]];
+    for (let i = 0; i <= 3; i++) {
+        if (possibleDiagWins[i][0] == 'X' && possibleDiagWins[i][1] == 'X') {
+            return ['X', possibleDiagWins[i]];
+        } else if (possibleDiagWins[i][0] == 'O' && possibleDiagWins[i][1] == 'O') {
+            return ['O', possibleDiagWins[i]];
+        } else {
+            continue;
+        }
+    }
+}
+
 function onBoxClick(e) {
     let index = parseInt(e.target.classList[1]);
     if (gameObj[index] !== 'empty') {
