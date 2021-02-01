@@ -43,6 +43,19 @@ function checkRow() {
     }
 }
 
+function checkCol() {
+    let possibleColWins = [[1, 4, 7], [2, 5, 8], [3, 6, 9]];
+    for (let i = 0; i <= 3; i++) {
+        if (possibleColWins[i][0] == 'X' && possibleColWins[i][1] == 'X' && possibleColWins[i][2] == 'X') {
+            return ['X', possibleColWins[i]];
+        } else if (possibleColWins[i][0] == 'O' && possibleColWins[i][1] == 'O' && possibleColWins[i][2] == 'O') {
+            return ['O', possibleColWins[i]];
+        } else {
+            continue;
+        }
+    }
+}
+
 function onBoxClick(e) {
     let index = parseInt(e.target.classList[1]);
     if (gameObj[index] !== 'empty') {
