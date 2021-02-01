@@ -30,6 +30,19 @@ function findEmptyAndPlay() {
     }
 }
 
+function checkRow() {
+    let possibleRowWins = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+    for (let i = 0; i <= 3; i++) {
+        if (possibleRowWins[i][0] == 'X' && possibleRowWins[i][1] == 'X' && possibleRowWins[i][2] == 'X') {
+            return ['X', possibleRowWins[i]];
+        } else if (possibleRowWins[i][0] == 'O' && possibleRowWins[i][1] == 'O' && possibleRowWins[i][2] == 'O') {
+            return ['O', possibleRowWins[i]];
+        } else {
+            continue;
+        }
+    }
+}
+
 function onBoxClick(e) {
     let index = parseInt(e.target.classList[1]);
     if (gameObj[index] !== 'empty') {
