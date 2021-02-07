@@ -47,13 +47,13 @@ function checkWin() {
             if (!diagWin) {
                 return false;
             } else {
-                console.log(`${identify(diagWin[0])} has won by the combination ${diagWin[1]}`);
+                return {winner: `${identify(diagWin[0])}`, combination: diagWin[1]};
             }
         } else {
-            console.log(`${identify(colWin[0])} has won by the combination ${colWin[1]}`);
+            return {winner: `${identify(colWin[0])}`, combination: colWin[1]};
         }
     } else {
-        console.log(`${identify(rowWin[0])} has won by the combination ${rowWin[1]}`);
+        return {winner: `${identify(rowWin[0])}`, combination: rowWin[1]};
     }
 }
 
