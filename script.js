@@ -99,11 +99,22 @@ function checkDiag() {
     return false;
 }
 
+function highlightCombination(squares) {
+    for (square in squares) {
+        boxes[square-1].style.backgroundColor = 'white';
+    }
+}
+
 function onBoxClick(e) {
     let index = parseInt(e.target.classList[1]);
     if (gameObj[index] !== 'empty') {
         console.log('Sorry, that box is occupied');
         return;
+    }
+    let checkWinRes = checkWin();
+    if (checkWinRes) {
+        highlightCombination(checkWinRes['combination']);
+        alert(`${checkWinRes['winner']} has won by the combination highlighted on the board with white background color.`)
     }
     gameObj[index] = 'X';
     e.target.textContent = 'X';
