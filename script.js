@@ -10,6 +10,10 @@ let gameObj = {
     8: 'empty',
     9: 'empty'
 };
+let computerThreat = {
+    threatExists: false,
+    threat: 'empty'
+}
 let winner;
 
 function addClasses() {
