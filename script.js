@@ -103,14 +103,6 @@ function checkDiag() {
     return false;
 }
 
-function checkThreat() {
-    if (computerThreat['threatExists'] == true) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 function highlightCombination(squares) {
     for (square in squares) {
         boxes[square-1].style.backgroundColor = 'white';
