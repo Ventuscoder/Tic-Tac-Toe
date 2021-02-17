@@ -41,6 +41,7 @@ function findEmptyAndPlay() {
     }
     const randomElement = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
     boxes[randomElement-1].textContent = 'O';
+    gameObj[randomElement] = 'O'
 }
 
 function checkWin() {
@@ -113,7 +114,7 @@ function highlightCombination(squares) {
 function onBoxClick(e) {
     let index = parseInt(e.target.classList[1]);
     if (gameObj[index] !== 'empty') {
-        console.log('Sorry, that box is occupied');
+        alert('Sorry, that box is occupied');
         return;
     }
     let checkWinRes = checkWin();
