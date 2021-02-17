@@ -39,6 +39,10 @@ function findEmptyAndPlay() {
             continue;
         }
     }
+    if (emptyBoxes.length == 0) {
+        alert('Game is over and it is a draw! Reload this page to play again!');
+        return;
+    }
     const randomElement = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
     boxes[randomElement-1].textContent = 'O';
     gameObj[randomElement] = 'O'
