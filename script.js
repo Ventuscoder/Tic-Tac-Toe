@@ -31,15 +31,16 @@ function identify(str) {
 }
 
 function findEmptyAndPlay() {
+    let emptyBoxes = [];
     for (key in gameObj) {
         if (gameObj[key] == 'empty') {
-            gameObj[key] = 'O';
-            boxes[key - 1].textContent = 'O';
-            return;
+            emptyBoxes.push(key);
         } else {
             continue;
         }
     }
+    const randomElement = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
+    boxes[randomElement].textContent = 'O';
 }
 
 function checkWin() {
@@ -116,7 +117,7 @@ function onBoxClick(e) {
         return;
     }
     let checkWinRes = checkWin();
-    if (checkWinRes) {
+    if (checkWinRes == true) {
         highlightCombination(checkWinRes['combination']);
         alert(`${checkWinRes['winner']} has won by the combination highlighted on the board with white background color.`)
     }
