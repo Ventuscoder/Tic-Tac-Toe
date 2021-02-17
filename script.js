@@ -40,7 +40,7 @@ function findEmptyAndPlay() {
         }
     }
     const randomElement = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
-    boxes[randomElement].textContent = 'O';
+    boxes[randomElement-1].textContent = 'O';
 }
 
 function checkWin() {
@@ -93,7 +93,7 @@ function checkCol() {
 function checkDiag() {
     let possibleDiagWins = [[1, 5, 9], [3, 5, 7]];
     for (let i = 0; i <= 3; i++) {
-        if (possibleDiagWins[i][0] == 'X' && possibleDiagWins[i][1] == 'X') {
+        if (possibleDiagWins[i][0] == 'X' && possibleDiagWins[i][1] == 'X' && possibleDiagWins[i][2] == 'X') {
             return ['X', possibleDiagWins[i]];
         } else if (possibleDiagWins[i][0] == 'O' && possibleDiagWins[i][1] == 'O') {
             return ['O', possibleDiagWins[i]];
