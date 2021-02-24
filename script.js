@@ -155,6 +155,19 @@ function onBoxClick(e) {
     findEmptyAndPlay();
 }
 
+function makeMove(e) {
+    let index =  parseInt(e.target.classList[1]);
+    if (gameObj[index] !== 'empty') {
+        alert('Sorry, that box is occupied');
+        return;
+    }
+    gameObj[index] = 'X';
+    e.target.textContent = 'X';
+    let location = findLocation(index);
+    rowContainer[location[row-1]]++;
+    colContainer[location[col-1]]++;
+}
+
 function game() {
     addClasses();
     // alert("Please note that standard tic-tac-toe rules apply");
