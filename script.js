@@ -14,6 +14,8 @@ let computerThreat = {
     threatExists: false,
     threat: 'empty'
 }
+let rowContainer = [0, 0, 0];
+let colContainer = [0, 0, 0];
 let winner;
 
 function addClasses() {
@@ -46,6 +48,28 @@ function findEmptyAndPlay() {
     const randomElement = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
     boxes[randomElement-1].textContent = 'O';
     gameObj[randomElement] = 'O'
+}
+
+function findLocation(serialNum) {
+    let row, col;
+    if (serialNum < 4) {
+        row = 1;
+    } else if (serialNum < 7) {
+        row = 2;
+    } else {
+        row = 3;
+    }
+    if (serialNum == 1 || serialNum == 4 || serialNum == 7) {
+        col = 1;
+    } else if (serialNum == 2 || serialNum == 5 || serialNum == 8) {
+        col = 2;
+    } else {
+        col = 3;
+    }
+    return {
+        row,
+        col
+    };
 }
 
 function checkWin() {
