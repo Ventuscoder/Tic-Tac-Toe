@@ -16,6 +16,7 @@ let computerThreat = {
 }
 let rowContainer = [0, 0, 0];
 let colContainer = [0, 0, 0];
+let diagContainer = [0, 0]
 let winner;
 
 function addClasses() {
@@ -164,8 +165,20 @@ function makeMove(e) {
     gameObj[index] = 'X';
     e.target.textContent = 'X';
     let location = findLocation(index);
-    rowContainer[location[row-1]]++;
-    colContainer[location[col-1]]++;
+    rowContainer[location[row]-1]++;
+    colContainer[location[col]-1]++;
+    if (location[row] === location[col]) {
+        diagContainer[0]++;
+    }
+    if (location[row] + location[col] === 3) {
+        diagContainer[1]++;
+    }
+}
+
+function newCheckWin(row, col) {
+    if (rowContainer[row-1] === 3) {
+        alert(``)
+    }
 }
 
 function game() {
