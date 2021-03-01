@@ -150,7 +150,7 @@ function game() {
 }
 
 boxes.forEach(box => {
-    box.addEventListener('click', onBoxClick);
+    box.addEventListener('click', makeMove);
 });
 
 window.addEventListener('load', game);
