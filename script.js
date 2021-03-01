@@ -188,8 +188,8 @@ function makeMove(e) {
 }
 
 function newCheckWin(row, col, person) {
-    if (rowContainer[row-1] === 3) {
-        alert(`${identify(person)} has won by the combination ${possibleWins[row[row-1]]}`)
+    if (playerContainer[rowContainer[row-1]] === 3) {
+        alert(`You have won by the combination ${possibleWins[row[row-1]]}`)
     }
     if (gameCon)
 }
