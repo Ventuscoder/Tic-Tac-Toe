@@ -13,10 +13,22 @@ let gameObj = {
 let computerThreat = {
     threatExists: false,
     threat: 'empty'
-}
-let rowContainer = [0, 0, 0];
-let colContainer = [0, 0, 0];
-let diagContainer = [0, 0]
+};
+let playerContainer = {
+    rowContainer: [0, 0, 0],
+    colContainer: [0, 0, 0],
+    diagContainer: [0, 0]
+};
+let compContainer = {
+    rowContainer: [0, 0, 0],
+    colContainer: [0, 0, 0],
+    diagContainer: [0, 0]
+};
+let possibleWins = {
+    row: [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+    col: [[1, 4, 7], [2, 5, 8], [3, 6, 9]],
+    diag: [[1, 5, 9], [3, 5, 7]]
+};
 let winner;
 
 function addClasses() {
@@ -26,7 +38,7 @@ function addClasses() {
 }
 
 function identify(str) {
-    if (str == 'O') {
+    if (str == 'X') {
         return 'You';
     } else {
         return 'The computer';
@@ -175,10 +187,11 @@ function makeMove(e) {
     }
 }
 
-function newCheckWin(row, col) {
+function newCheckWin(row, col, person) {
     if (rowContainer[row-1] === 3) {
-        alert(``)
+        alert(`${identify(person)} has won by the combination ${possibleWins[row[row-1]]}`)
     }
+    if (gameCon)
 }
 
 function game() {
