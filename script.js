@@ -177,21 +177,46 @@ function makeMove(e) {
     gameObj[index] = 'X';
     e.target.textContent = 'X';
     let location = findLocation(index);
-    playerContainer[rowContainer[location[row]-1]]++;
-    playerContainer[colContainer[location[col]-1]]++;
+    playerContainer['rowContainer'][location][row-1]++;
+    playerContainer['colContainer'][location][col-1]++;
     if (location[row] === location[col]) {
-        playerContainer[diagContainer[0]]++;
+        playerContainer['diagContainer'][0]++;
     }
     if (location[row] + location[col] === 3) {
-        playerContainer[diagContainer[1]]++;
+        playerContainer['diagContainer'][1]++;
     }
 }
 
 function newCheckWin(row, col, person) {
-    if (playerContainer[rowContainer[row-1]] === 3) {
-        alert(`You have won by the combination ${possibleWins[row[row-1]]}`)
+    if (playerContainer['rowContainer'][row-1] === 3) {
+        alert(`You have won by the combination ${possibleWins['row'][row-1]}`);
+        return true;
     }
-    if (gameCon)
+    if (playerContainer['colContainer'][col-1] === 3) {
+        alert(`You have won by the combination ${possibleWins['col'][col-1]}`);
+        return true;
+    }
+    for (let i = 0; i < 2; i++) {
+        if (playerContainer['diagContainer'][i] === 3) {
+            alert(`You have won by the combination ${possibleWins['diag'][i]}`);
+            return true;
+        }
+    }
+    if (compContainer['rowContainer'][row-1] === 3) {
+        alert(`The computer has won by the combination ${possibleWins['row'][row-1]}`);
+        return true;
+    }
+    if (compContainer['colContainer'][col-1] === 3) {
+        alert(`The computer has won by the combination ${possibleWins['col'][col-1]}`);
+        return true;
+    }
+    for (let i = 0; i < 2; i++) {
+        if (compContainer['diagContainer'][i] === 3) {
+            alert(`The computer has won by the combination ${possibleWins['diag'][i]}`);
+            return true;
+        }
+    }
+    return false;
 }
 
 function game() {
