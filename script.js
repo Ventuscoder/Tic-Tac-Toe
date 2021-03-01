@@ -177,13 +177,13 @@ function makeMove(e) {
     gameObj[index] = 'X';
     e.target.textContent = 'X';
     let location = findLocation(index);
-    rowContainer[location[row]-1]++;
-    colContainer[location[col]-1]++;
+    playerContainer[rowContainer[location[row]-1]]++;
+    playerContainer[colContainer[location[col]-1]]++;
     if (location[row] === location[col]) {
-        diagContainer[0]++;
+        playerContainer[diagContainer[0]]++;
     }
     if (location[row] + location[col] === 3) {
-        diagContainer[1]++;
+        playerContainer[diagContainer[1]]++;
     }
 }
 
