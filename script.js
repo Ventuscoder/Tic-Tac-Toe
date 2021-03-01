@@ -37,32 +37,6 @@ function addClasses() {
     }
 }
 
-function identify(str) {
-    if (str == 'X') {
-        return 'You';
-    } else {
-        return 'The computer';
-    }
-}
-
-function findEmptyAndPlay() {
-    let emptyBoxes = [];
-    for (key in gameObj) {
-        if (gameObj[key] == 'empty') {
-            emptyBoxes.push(key);
-        } else {
-            continue;
-        }
-    }
-    if (emptyBoxes.length == 0) {
-        alert('Game is over and it is a draw! Reload this page to play again!');
-        return;
-    }
-    const randomElement = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
-    boxes[randomElement-1].textContent = 'O';
-    gameObj[randomElement] = 'O'
-}
-
 function findLocation(serialNum) {
     let row, col;
     if (serialNum < 4) {
@@ -87,6 +61,22 @@ function findLocation(serialNum) {
 
 function reloadPage() {
     location.reload();
+}
+
+function makeComputerMove() {
+    let emptyBoxes = [];
+    for (let i = 0; i < 9; i++) {
+        if (gameObj[i] === 'empty') {
+            emptyBoxes.push(i);
+        }
+    }
+    let randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
+    boxes[randomBox].textContent = 'O';
+    gameObj[randomBox+1] = 'O';
+    let location = findLocation(randomBox+1);
+    if (checkWin(location['row'], location['col']) == true) {
+        reloadPage();
+    }
 }
 
 function makeMove(e) {
