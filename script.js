@@ -106,12 +106,12 @@ function makeMove(e) {
     if (location['row'] + location['col'] === 3) {
         playerContainer['diagContainer'][1]++;
     }
-    if (newCheckWin(location['row'], location['col']) == true) {
+    if (checkWin(location['row'], location['col']) == true) {
         reloadPage();
     }
 }
 
-function newCheckWin(row, col) {
+function checkWin(row, col) {
     if (playerContainer['rowContainer'][row-1] === 3) {
         alert(`You have won by the combination ${possibleWins['row'][row-1]}`);
         return true;
