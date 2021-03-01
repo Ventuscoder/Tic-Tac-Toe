@@ -85,87 +85,8 @@ function findLocation(serialNum) {
     };
 }
 
-function checkWin() {
-    let rowWin = checkRow;
-    let colWin = checkCol;
-    let diagWin = checkDiag;
-    if (!rowWin) {
-        if (!colWin) {
-            if (!diagWin) {
-                return false;
-            } else {
-                return {winner: `${identify(diagWin[0])}`, combination: diagWin[1]};
-            }
-        } else {
-            return {winner: `${identify(colWin[0])}`, combination: colWin[1]};
-        }
-    } else {
-        return {winner: `${identify(rowWin[0])}`, combination: rowWin[1]};
-    }
-}
-
-function checkRow() {
-    let possibleRowWins = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
-    for (let i = 0; i <= 3; i++) {
-        if (possibleRowWins[i][0] == 'X' && possibleRowWins[i][1] == 'X' && possibleRowWins[i][2] == 'X') {
-            return ['X', possibleRowWins[i]];
-        } else if (possibleRowWins[i][0] == 'O' && possibleRowWins[i][1] == 'O' && possibleRowWins[i][2] == 'O') {
-            return ['O', possibleRowWins[i]];
-        } else {
-            continue;
-        }
-    }
-    return false;
-}
-
-function checkCol() {
-    let possibleColWins = [[1, 4, 7], [2, 5, 8], [3, 6, 9]];
-    for (let i = 0; i <= 3; i++) {
-        if (possibleColWins[i][0] == 'X' && possibleColWins[i][1] == 'X' && possibleColWins[i][2] == 'X') {
-            return ['X', possibleColWins[i]];
-        } else if (possibleColWins[i][0] == 'O' && possibleColWins[i][1] == 'O' && possibleColWins[i][2] == 'O') {
-            return ['O', possibleColWins[i]];
-        } else {
-            continue;
-        }
-    }
-    return false;
-}
-
-function checkDiag() {
-    let possibleDiagWins = [[1, 5, 9], [3, 5, 7]];
-    for (let i = 0; i <= 3; i++) {
-        if (possibleDiagWins[i][0] == 'X' && possibleDiagWins[i][1] == 'X' && possibleDiagWins[i][2] == 'X') {
-            return ['X', possibleDiagWins[i]];
-        } else if (possibleDiagWins[i][0] == 'O' && possibleDiagWins[i][1] == 'O') {
-            return ['O', possibleDiagWins[i]];
-        } else {
-            continue;
-        }
-    }
-    return false;
-}
-
-function highlightCombination(squares) {
-    for (square in squares) {
-        boxes[square-1].style.backgroundColor = 'white';
-    }
-}
-
-function onBoxClick(e) {
-    let index = parseInt(e.target.classList[1]);
-    if (gameObj[index] !== 'empty') {
-        alert('Sorry, that box is occupied');
-        return;
-    }
-    let checkWinRes = checkWin();
-    if (checkWinRes == true) {
-        highlightCombination(checkWinRes['combination']);
-        alert(`${checkWinRes['winner']} has won by the combination highlighted on the board with white background color.`)
-    }
-    gameObj[index] = 'X';
-    e.target.textContent = 'X';
-    findEmptyAndPlay();
+function reloadPage() {
+    location.reload();
 }
 
 function makeMove(e) {
@@ -177,17 +98,20 @@ function makeMove(e) {
     gameObj[index] = 'X';
     e.target.textContent = 'X';
     let location = findLocation(index);
-    playerContainer['rowContainer'][location][row-1]++;
-    playerContainer['colContainer'][location][col-1]++;
-    if (location[row] === location[col]) {
+    playerContainer['rowContainer'][location]['row'-1]++;
+    playerContainer['colContainer'][location]['col'-1]++;
+    if (location['row'] === location['col']) {
         playerContainer['diagContainer'][0]++;
     }
-    if (location[row] + location[col] === 3) {
+    if (location['row'] + location['col'] === 3) {
         playerContainer['diagContainer'][1]++;
+    }
+    if (newCheckWin(location['row'], location['col']) == true) {
+        reloadPage();
     }
 }
 
-function newCheckWin(row, col, person) {
+function newCheckWin(row, col) {
     if (playerContainer['rowContainer'][row-1] === 3) {
         alert(`You have won by the combination ${possibleWins['row'][row-1]}`);
         return true;
