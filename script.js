@@ -65,7 +65,7 @@ function reloadPage() {
 
 function makeComputerMove() {
     let emptyBoxes = [];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 1; i < 10; i++) {
         if (gameObj[i] === 'empty') {
             emptyBoxes.push(i);
         }
@@ -88,8 +88,8 @@ function makeMove(e) {
     gameObj[index] = 'X';
     e.target.textContent = 'X';
     let location = findLocation(index);
-    playerContainer['rowContainer'][location]['row'-1]++;
-    playerContainer['colContainer'][location]['col'-1]++;
+    playerContainer['rowContainer'][[location]['row']-1]++;
+    playerContainer['colContainer'][[location]['col']-1]++;
     if (location['row'] === location['col']) {
         playerContainer['diagContainer'][0]++;
     }
@@ -99,6 +99,7 @@ function makeMove(e) {
     if (checkWin(location['row'], location['col']) == true) {
         reloadPage();
     }
+    makeComputerMove();
 }
 
 function checkWin(row, col) {
