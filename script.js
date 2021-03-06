@@ -71,9 +71,9 @@ function makeComputerMove() {
         }
     }
     let randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
-    boxes[randomBox].textContent = 'O';
-    gameObj[randomBox+1] = 'O';
-    let location = findLocation(randomBox+1);
+    boxes[randomBox-1].textContent = 'O';
+    gameObj[randomBox] = 'O';
+    let location = findLocation(randomBox);
     if (checkWin(location['row'], location['col']) == true) {
         reloadPage();
     }
