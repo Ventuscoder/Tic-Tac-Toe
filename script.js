@@ -74,6 +74,14 @@ function makeComputerMove() {
     boxes[randomBox-1].textContent = 'O';
     gameObj[randomBox] = 'O';
     let location = findLocation(randomBox);
+    compContainer['rowContainer'][location['row']-1]++;
+    compContainer['colContainer'][location['col']-1]++;
+    if (location['row'] === location['col']) {
+        compContainer['diagContainer'][0]++;
+    }
+    if (location['row'] + location['col'] === 3) {
+        compContainer['diagContainer'][1]++;
+    }
     if (checkWin(location['row'], location['col']) == true) {
         reloadPage();
     }
@@ -88,8 +96,8 @@ function makeMove(e) {
     gameObj[index] = 'X';
     e.target.textContent = 'X';
     let location = findLocation(index);
-    playerContainer['rowContainer'][[location]['row']-1]++;
-    playerContainer['colContainer'][[location]['col']-1]++;
+    playerContainer['rowContainer'][location['row']-1]++;
+    playerContainer['colContainer'][location['col']-1]++;
     if (location['row'] === location['col']) {
         playerContainer['diagContainer'][0]++;
     }
