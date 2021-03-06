@@ -144,8 +144,8 @@ function checkWin(row, col) {
 
 function game() {
     addClasses();
-    // alert("Please note that standard tic-tac-toe rules apply");
-    // alert("You will be playing against AI and you have the first move. Let the game commence!");
+    alert("Please note that standard tic-tac-toe rules apply");
+    alert("You will be playing against AI and you have the first move. Let the game commence!");
 }
 
 boxes.forEach(box => {
